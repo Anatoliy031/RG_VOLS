@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
   <title>План визита рабочей группы ВОЛС — Россети Кубань</title>
-  <meta name="description" content="План визита рабочей группы по направлению ВОЛС (10–12 сентября 2025 г.). Цель, участники, программа по дням, материалы и быстрые действия." />
+  <meta name="description" content="План визита рабочей группы по направлению ВОЛС. Цель, участники, программа по дням, материалы и быстрые действия." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -22,6 +22,7 @@
       --bad:#b00020;
       --radius:16px;
       --shadow:0 10px 30px rgba(0,0,0,.08);
+      --nav-h:60px;
     }
     @media (prefers-color-scheme: dark){
       :root{
@@ -33,11 +34,11 @@
         --shadow:0 10px 30px rgba(0,0,0,.35);
       }
     }
-
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--ink)}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%}
     a{color:var(--rs-blue-600);text-decoration:none}
     a:hover{text-decoration:underline}
+    button{cursor:pointer}
 
     /* Header */
     header{
@@ -45,39 +46,53 @@
       backdrop-filter:saturate(180%) blur(8px);
       background:linear-gradient(90deg, rgba(0,51,160,.96), rgba(10,71,198,.96));
       color:#fff; box-shadow:var(--shadow);
+      height:var(--nav-h);
     }
-    .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
     .nav{
-      display:flex;align-items:center;justify-content:space-between;
-      height:64px;
+      display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);
     }
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
-    .brand svg{width:28px;height:28px}
-    .menu{display:flex;gap:18px;font-weight:600}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+    .brand svg{width:26px;height:26px}
+    .menu{display:flex;gap:16px;font-weight:600}
     .menu a{color:#fff;opacity:.92}
     .menu a:hover{opacity:1}
+    .burger{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(255,255,255,.25);border-radius:12px;background:transparent;color:#fff}
+
+    /* Mobile panel */
+    .mnav{
+      position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;z-index:60;
+    }
+    .mnav .sheet{
+      position:absolute;right:0;top:0;bottom:0;width:min(85vw,380px);
+      background:linear-gradient(180deg, #0b1f56, #0a47c6);
+      color:#fff;padding:16px;display:flex;flex-direction:column;gap:10px;
+      box-shadow:-8px 0 20px rgba(0,0,0,.3)
+    }
+    .mnav a{color:#fff;font-weight:700;padding:12px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2)}
+    .mnav.show{display:block}
 
     /* Hero */
     .hero{
       position:relative;overflow:hidden;
       background:
-        radial-gradient(1200px 400px at 100% -50%, rgba(0,174,239,.25), transparent 60%),
-        radial-gradient(900px 300px at -10% 0%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(900px 300px at 100% -60%, rgba(0,174,239,.25), transparent 60%),
+        radial-gradient(700px 260px at -10% 0%, rgba(255,255,255,.35), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.06), transparent 40%);
       border-bottom:1px solid var(--border);
     }
     .hero-grid{
-      display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;
-      padding:38px 0 28px;
+      display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;
+      padding:22px 0 22px;
     }
     .badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.4)}
-    .title{font-size:40px;line-height:1.1;margin:16px 0 10px;font-weight:800;color:#fff}
-    .subtitle{color:#eaf3ff;font-size:16px;max-width:800px}
-    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .title{font-size:34px;line-height:1.15;margin:14px 0 8px;font-weight:800;color:#fff}
+    .subtitle{color:#eaf3ff;font-size:15px;max-width:800px}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .btn{
       display:inline-flex;align-items:center;gap:10px;
       padding:12px 16px;border-radius:12px;border:1px solid var(--border);
-      background:var(--card);color:var(--ink);font-weight:600;box-shadow:var(--shadow)
+      background:var(--card);color:var(--ink);font-weight:600;box-shadow:var(--shadow);min-height:44px
     }
     .btn.primary{background:linear-gradient(90deg,var(--rs-blue),var(--rs-blue-600));color:#fff;border-color:rgba(255,255,255,.25)}
     .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
@@ -85,30 +100,32 @@
 
     .hero-card{
       background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-      padding:18px;box-shadow:var(--shadow)
+      padding:14px;box-shadow:var(--shadow)
     }
-    .kpi{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .kpi{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .kpi .tile{
-      border:1px solid var(--border);border-radius:14px;padding:14px;background:linear-gradient(180deg, rgba(0,174,239,.06), transparent 60%)
+      border:1px solid var(--border);border-radius:14px;padding:12px;background:linear-gradient(180deg, rgba(0,174,239,.06), transparent 60%)
     }
     .kpi .h{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
-    .kpi .v{font-size:22px;font-weight:800}
-    .countdown{display:flex;gap:10px;margin-top:8px}
-    .cd{flex:1;border:1px dashed var(--border);border-radius:12px;text-align:center;padding:10px}
+    .kpi .v{font-size:19px;font-weight:800}
+    .countdown{display:flex;gap:8px;margin-top:8px}
+    .cd{flex:1;border:1px dashed var(--border);border-radius:12px;text-align:center;padding:8px}
     .cd .n{font-weight:800;font-size:18px}
     .cd .l{font-size:12px;color:var(--muted)}
 
     /* Sections */
-    section{padding:36px 0}
-    h2{font-size:22px;margin:0 0 16px}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    section{padding:26px 0}
+    h2{font-size:20px;margin:0 0 12px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
 
-    /* Participants */
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    /* Grid helpers */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
     .col-6{grid-column:span 6}
     .col-12{grid-column:span 12}
-    .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-    .person{display:flex;gap:12px;border:1px solid var(--border);border-radius:14px;padding:12px;background:var(--card)}
+
+    /* People */
+    .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+    .person{display:flex;gap:10px;border:1px solid var(--border);border-radius:12px;padding:10px;background:var(--card)}
     .avatar{
       width:40px;height:40px;border-radius:10px;background:linear-gradient(180deg,var(--rs-blue),var(--rs-blue-600));
       color:#fff;display:grid;place-items:center;font-weight:800
@@ -116,38 +133,38 @@
     .role{color:var(--muted);font-size:13px}
 
     /* Program */
-    .day{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:14px;background:var(--card)}
+    .day{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:12px;background:var(--card)}
     .day-h{
       display:flex;justify-content:space-between;align-items:center;gap:10px;
-      padding:14px 16px;background:linear-gradient(90deg, rgba(0,51,160,.08), transparent)
+      padding:12px;background:linear-gradient(90deg, rgba(0,51,160,.08), transparent)
     }
     .day-h .d{font-weight:800}
     .day-h small{color:var(--muted);font-weight:600}
-    .toggle{appearance:none;width:26px;height:26px;border-radius:8px;border:1px solid var(--border);display:grid;place-items:center;background:#fff;cursor:pointer}
+    .toggle{appearance:none;width:40px;height:40px;border-radius:12px;border:1px solid var(--border);display:grid;place-items:center;background:#fff}
     .toggle:after{content:"+";font-weight:800}
     .day.open .toggle:after{content:"–"}
-    .day-b{display:none;padding:8px 12px 12px}
+    .day-b{display:none;padding:8px 10px 12px}
     .day.open .day-b{display:block}
 
-    .timeline{position:relative;padding-left:22px}
+    .timeline{position:relative;padding-left:20px}
     .timeline:before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--rs-blue-600),transparent)}
-    .evt{position:relative;margin:10px 0;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+    .evt{position:relative;margin:8px 0;padding:10px;border:1px solid var(--border);border-radius:12px;background:var(--card)}
     .evt:before{content:"";position:absolute;left:-5px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--rs-accent);box-shadow:0 0 0 3px rgba(0,174,239,.2)}
     .evt h4{margin:0;font-size:15px}
     .evt .t{font-weight:700}
     .evt .desc{color:var(--muted);font-size:14px;margin-top:6px}
-    .evt .sub{margin-top:8px;padding-left:16px;color:var(--ink);font-size:14px}
-    .evt .act{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .evt .sub{margin-top:6px;padding-left:16px;color:var(--ink);font-size:14px}
+    .evt .act{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 
     /* Materials checklist */
-    .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-    .item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--border);border-radius:12px;padding:12px;background:var(--card)}
+    .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+    .item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--border);border-radius:12px;padding:10px;background:var(--card)}
     .item input{margin-top:4px}
     .item .name{font-weight:700}
     .item .note{color:var(--muted);font-size:13px}
 
     /* Footer */
-    footer{padding:28px 0 40px;color:var(--muted);text-align:center}
+    footer{padding:22px 0 30px;color:var(--muted);text-align:center}
 
     /* Utilities */
     .row{display:flex;gap:10px;flex-wrap:wrap}
@@ -157,20 +174,50 @@
     .search{display:flex;gap:8px}
     .search input{flex:1;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--ink)}
     .right{margin-left:auto}
-    .sep{height:1px;background:var(--border);margin:14px 0}
+    .sep{height:1px;background:var(--border);margin:12px 0}
     .print-only{display:none}
+    .no-export{display:inherit} /* элементы, которые не попадут в PDF, будут скрыты стилем ниже */
+
+    /* Floating actions */
+    #quick-actions{position:fixed;bottom:14px;right:14px;display:flex;flex-direction:column;gap:8px;z-index:70}
+    #quick-actions .btn{min-width:44px}
+
+    /* Print (и PDF) — делаем плотнее и скрываем служебное */
     @media print{
-      header,.cta,#quick-actions{display:none!important}
+      header,.cta,#quick-actions,.mnav,.burger,.menu,.search,.hint,.no-print{display:none!important}
       .print-only{display:block}
       body{background:#fff}
       .day-b{display:block}
       .day{break-inside:avoid}
+      .hero{border:none}
+      .title{color:#000}
     }
 
-    /* Responsive */
+    /* ======= Mobile tweaks ======= */
     @media (max-width:960px){
       .hero-grid{grid-template-columns:1fr}
       .menu{display:none}
+      .burger{display:flex}
+    }
+    @media (max-width:640px){
+      :root{--nav-h:56px}
+      .title{font-size:28px}
+      .subtitle{font-size:14px}
+      .kpi{grid-template-columns:1fr}
+      .cd .n{font-size:16px}
+      .chips .chip{font-size:11px}
+      .people{grid-template-columns:1fr}
+      .wrap{padding:0 12px}
+      .btn{padding:11px 14px}
+      #quick-actions{right:10px;bottom:10px}
+    }
+    @media (max-width:420px){
+      .title{font-size:24px}
+      h2{font-size:18px}
+      .evt h4{font-size:14px}
+      .avatar{width:36px;height:36px}
+      .toggle{width:36px;height:36px}
+      .badge{font-size:12px}
     }
   </style>
 </head>
@@ -178,7 +225,6 @@
 <header>
   <div class="wrap nav">
     <div class="brand">
-      <!-- Простая SVG-«розетка» в стиле Россети -->
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
         <path d="M7 12h10M12 7v10" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -191,24 +237,40 @@
       <a href="#program">Программа</a>
       <a href="#materials">Материалы</a>
     </nav>
+    <button class="burger" id="burger" aria-label="Меню">☰</button>
   </div>
 </header>
 
-<main>
+<!-- Мобильная панель -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <div class="sheet">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-weight:800">Навигация</div>
+      <button class="btn" id="closeMnav">✕</button>
+    </div>
+    <a href="#goal" class="mitem">Цель</a>
+    <a href="#people" class="mitem">Участники</a>
+    <a href="#program" class="mitem">Программа</a>
+    <a href="#materials" class="mitem">Материалы</a>
+  </div>
+</div>
+
+<main id="exportArea"><!-- ВСЁ внутри этого блока попадёт в PDF -->
   <!-- HERO -->
-  <div class="hero">
+  <div class="hero no-export"><!-- шапку не включаем в PDF, достаточно титульного блока ниже -->
     <div class="wrap">
       <div class="hero-grid">
         <div>
           <span class="badge">10–12 сентября 2025 г. • Рабочая группа по направлению ВОЛС</span>
           <h1 class="title">Визит рабочей группы <span style="color:#A6E4FF">ПАО «Россети»</span> в АО «Россети Кубань»</h1>
           <p class="subtitle">
-            Представительный визит для обмена опытом: выявление бездоговорного размещения ВОЛС,
-            инвентаризация на ОЭХ 0,4–10 кВ, регламенты взаимодействия и практики работы с контрагентами.
+            Представительный визит: выявление бездоговорного размещения ВОЛС, инвентаризация на ОЭХ 0,4–10 кВ,
+            регламенты взаимодействия и практика работы с контрагентами.
           </p>
           <div class="cta">
             <button class="btn primary" id="addAllIcs">Добавить всё в календарь (ICS)</button>
             <a class="btn ghost" href="assets/plan.docx" download>Скачать план (.docx)</a>
+            <button class="btn" id="pdfBtn">Скачать план (PDF)</button>
             <button class="btn" id="printBtn">Печать / PDF</button>
           </div>
         </div>
@@ -238,13 +300,21 @@
     </div>
   </div>
 
+  <!-- Титул для PDF -->
+  <div class="wrap print-only" style="margin-top:12px">
+    <div class="card" style="text-align:center">
+      <div style="font-weight:800;font-size:20px">План визита рабочей группы по направлению ВОЛС</div>
+      <div>10–12 сентября 2025 г. • АО «Россети Кубань»</div>
+    </div>
+  </div>
+
   <!-- GOAL -->
   <section id="goal">
     <div class="wrap grid">
       <div class="col-12 card">
         <h2>Цель визита</h2>
         <p>
-          Ознакомление с успешными практиками АО «Россети Кубань» по выявлению бездоговорного размещения ВОЛС,
+          Ознакомление с практиками АО «Россети Кубань» по выявлению бездоговорного размещения ВОЛС,
           порядком инвентаризации на ОЭХ 0,4–10 кВ и отработкой регламентов взаимодействия с контрагентами.
         </p>
         <div class="chips" aria-label="ключевые темы">
@@ -261,11 +331,7 @@
   <!-- PEOPLE -->
   <section id="people">
     <div class="wrap grid">
-      <div class="col-12">
-        <div class="row" style="justify-content:space-between;align-items:center">
-          <h2>Состав участников</h2>
-        </div>
-      </div>
+      <div class="col-12"><h2>Состав участников</h2></div>
       <div class="col-6 card">
         <div class="h" style="font-weight:800;margin-bottom:8px">От ПАО «Россети»</div>
         <div class="people">
@@ -273,7 +339,7 @@
             <div class="avatar">БШ</div>
             <div>
               <div class="name">Шайборов Батор Александрович</div>
-              <div class="role">Главный эксперт департамента оперативно-технологического управления, стандартизации и развития систем; курирует внедрение и координацию технологических информационных систем, АСТУ и связи</div>
+              <div class="role">Главный эксперт департамента ОТУ, стандартизации и развития систем</div>
             </div>
           </div>
           <div class="person">
@@ -286,7 +352,7 @@
         </div>
       </div>
       <div class="col-6 card">
-        <div class="h" style="font-weight:800;margin-bottom:8px">От ПАО «Россети Кубань»</div>
+        <div class="h" style="font-weight:800;margin-bottom:8px">От АО «Россети Кубань»</div>
         <div class="people">
           <div class="person">
             <div class="avatar">АА</div>
@@ -299,7 +365,7 @@
             <div class="avatar">ВК</div>
             <div>
               <div class="name">Корних Владислав Эрнестович</div>
-              <div class="role">Главный специалист отдела договорной работы по дополнительным услугам</div>
+              <div class="role">Главный специалист отдела договорной работы</div>
             </div>
           </div>
         </div>
@@ -312,9 +378,8 @@
     <div class="wrap">
       <div class="row" style="align-items:center;justify-content:space-between">
         <h2>Программа визита</h2>
-        <div class="search">
-          <input type="search" id="search" placeholder="Быстрый поиск по программе (введите слово)"/>
-          <span class="hint">например: «демонтаж», «425-од», «бот»</span>
+        <div class="search no-export">
+          <input type="search" id="search" placeholder="Поиск по программе (например: «демонтаж», «425-од», «бот»)" inputmode="search"/>
         </div>
       </div>
 
@@ -329,20 +394,20 @@
           <div class="timeline" id="day1">
             <div class="evt" data-q="формат работа представление участников">
               <h4><span class="t">14:00–14:30</span> • Формат работы, представление участников</h4>
-              <div class="act">
+              <div class="act no-export">
                 <button class="btn" data-ics='{"date":"2025-09-10","start":"14:00","end":"14:30","title":"Формат работы и представление участников","desc":"Старт встречи, согласование формата работы"}'>Добавить в календарь</button>
               </div>
             </div>
 
             <div class="evt" data-q="демонстрация регламенты приказы 245-од 425-од 476-од">
               <h4><span class="t">14:30–15:20</span> • Демонстрация регламентов и приказов</h4>
-              <div class="desc">Обзор ключевых документов: состав комиссий, алгоритмы взаимодействия, регламент доступа к ВЛ.</div>
+              <div class="desc">Обзор: состав комиссий, алгоритмы взаимодействия, регламент доступа к ВЛ.</div>
               <ul class="sub">
-                <li>Приказ <b>08.04.2025 №245-од</b> — состав комиссии и график проверки филиалов до сентября 2026 г.</li>
-                <li>Приказ <b>17.06.2025 №425-од</b> — алгоритм взаимодействия при инвентаризации ВОЛС; роли, телеграм-бот, ответственность.</li>
-                <li>Приказ <b>27.06.2024 №476-од</b> — регламент оказания услуг по предоставлению доступа к ВЛ для размещения ВОЛС.</li>
+                <li>Приказ <b>08.04.2025 №245-од</b> — состав комиссии, график проверки филиалов до 09.2026.</li>
+                <li>Приказ <b>17.06.2025 №425-од</b> — алгоритм взаимодействия при инвентаризации ВОЛС; роли, бот, ответственность.</li>
+                <li>Приказ <b>27.06.2024 №476-од</b> — регламент оказания услуг доступа к ВЛ для ВОЛС.</li>
               </ul>
-              <div class="act">
+              <div class="act no-export">
                 <button class="btn" data-ics='{"date":"2025-09-10","start":"14:30","end":"15:20","title":"Демонстрация регламентов и приказов","desc":"245-од, 425-од, 476-од"}'>Добавить в календарь</button>
               </div>
             </div>
@@ -350,14 +415,13 @@
             <div class="evt" data-q="обмен опытом гарантийные письма претензионная работа демонтаж волс работа с контрагентами задолженность суд реестры структура сети выявление бездоговорного по 425-од телеграм-бот">
               <h4><span class="t">15:20–17:00</span> • Обмен опытом</h4>
               <ul class="sub">
-                <li>Положительная практика по гарантийным письмам (утверждённый формат).</li>
+                <li>Практика гарантийных писем (утверждённый формат).</li>
                 <li>Претензионная работа при неподписанных договорах.</li>
                 <li>Памятка персоналу по демонтажу ВОЛС.</li>
-                <li><b>Работа с контрагентами и сопровождение:</b> просроченная задолженность, организация судебной работы, регламент выявления бездоговорного ВОЛС (взаимодействие блоков), актуализация реестров и структуры сети (изменения по 425-од), порядок выявления бездоговорного подвеса (передача практик).</li>
-                <li>Демонстрация телеграм-бота (сценарии, роли, выгрузки, отчётность).</li>
+                <li><b>Работа с контрагентами и сопровождение:</b> задолженность, суд, регламент выявления БД ВОЛС, актуализация реестров и структуры сети (425-од), порядок выявления, демонстрация телеграм-бота.</li>
               </ul>
-              <div class="act">
-                <button class="btn" data-ics='{"date":"2025-09-10","start":"15:20","end":"17:00","title":"Обмен опытом","desc":"Практики гарантийных писем, претензии, демонтаж, реестры, телеграм-бот"}'>Добавить в календарь</button>
+              <div class="act no-export">
+                <button class="btn" data-ics='{"date":"2025-09-10","start":"15:20","end":"17:00","title":"Обмен опытом","desc":"Гарантийные письма, претензии, демонтаж, реестры, бот"}'>Добавить в календарь</button>
               </div>
             </div>
           </div>
@@ -377,9 +441,9 @@
               <h4><span class="t">08:00–13:00</span> • Контроль размещения ВОЛС на ВЛ</h4>
               <ul class="sub">
                 <li>Проверка договорного ВОЛС: сверка с реестрами договоров.</li>
-                <li>Демонстрация ведения учёта договорного ВОЛС (мобильные формы/бот).</li>
+                <li>Демонстрация учёта договорного ВОЛС (мобильные формы/бот).</li>
               </ul>
-              <div class="act">
+              <div class="act no-export">
                 <button class="btn" data-ics='{"date":"2025-09-11","start":"08:00","end":"13:00","title":"Контроль размещения ВОЛС на ВЛ","desc":"Полевые проверки и демонстрация учёта"}'>Добавить в календарь</button>
               </div>
             </div>
@@ -389,16 +453,16 @@
               <ul class="sub">
                 <li>Фиксация, уведомления, оформление документации.</li>
                 <li>Взаимодействие подразделений по 425-од.</li>
-                <li>Принятие решения: уведомления / демонтаж / оформление договора размещения.</li>
+                <li>Решение: уведомления / демонтаж / оформление договора размещения.</li>
               </ul>
-              <div class="act">
+              <div class="act no-export">
                 <button class="btn" data-ics='{"date":"2025-09-11","start":"13:00","end":"16:30","title":"Действия при обнаружении бездоговорного ВОЛС","desc":"Фиксация, уведомления, демонтаж или договор"}'>Добавить в календарь</button>
               </div>
             </div>
 
             <div class="evt" data-q="подведение итогов четверг">
               <h4><span class="t">16:30–17:00</span> • Подведение итогов дня</h4>
-              <div class="act">
+              <div class="act no-export">
                 <button class="btn" data-ics='{"date":"2025-09-11","start":"16:30","end":"17:00","title":"Подведение итогов (день 2)","desc":"Краткая фиксация результатов выездов"}'>Добавить в календарь</button>
               </div>
             </div>
@@ -417,14 +481,14 @@
           <div class="timeline" id="day3">
             <div class="evt" data-q="итоги обсуждение тиражирование обратная связь протокол">
               <h4><span class="t">07:00–07:30</span> • Подведение итогов и обратная связь</h4>
-              <div class="desc">Обсуждение тиражирования практик, формирование пунктов протокола.</div>
-              <div class="act">
+              <div class="desc">Тиражирование практик, формирование пунктов протокола.</div>
+              <div class="act no-export">
                 <button class="btn" data-ics='{"date":"2025-09-12","start":"07:00","end":"07:30","title":"Подведение итогов и обратная связь","desc":"Тиражирование практик, формирование протокола"}'>Добавить в календарь</button>
               </div>
             </div>
             <div class="evt" data-q="выезд представителей россети">
               <h4><span class="t">07:30–08:10</span> • Выезд представителей рабочей группы ПАО «Россети»</h4>
-              <div class="act">
+              <div class="act no-export">
                 <button class="btn" data-ics='{"date":"2025-09-12","start":"07:30","end":"08:10","title":"Выезд представителей рабочей группы","desc":"Логистика и отправление"}'>Добавить в календарь</button>
               </div>
             </div>
@@ -432,7 +496,7 @@
         </div>
       </div>
 
-      <div class="hint">Подсказка: кликните по заголовку дня, чтобы свернуть/развернуть блок. В поиске можно вводить ключевые слова — нерелевантные события будут скрываться.</div>
+      <div class="hint no-export">Подсказка: в поиске вводите ключевые слова — нерелевантные события будут скрываться.</div>
     </div>
   </section>
 
@@ -456,7 +520,7 @@
         <label class="item"><input type="checkbox" data-key="m3"/>
           <div>
             <div class="name">Формы</div>
-            <div class="note">гарантийное письмо (утв. формат), акт выявления, действия при демонтаже, уведомление контрагенту</div>
+            <div class="note">гарантийное письмо, акт выявления, уведомление контрагенту</div>
           </div>
         </label>
         <label class="item"><input type="checkbox" data-key="m4"/>
@@ -485,53 +549,49 @@
       </div>
     </div>
   </section>
-
-  <!-- PRINT HEADER (для печати) -->
-  <div class="wrap print-only" style="margin-top:12px">
-    <div class="card" style="text-align:center">
-      <div style="font-weight:800;font-size:20px">План визита рабочей группы по направлению ВОЛС</div>
-      <div>10–12 сентября 2025 г.</div>
-    </div>
-  </div>
 </main>
 
 <!-- QUICK ACTIONS -->
-<div id="quick-actions" style="position:fixed;bottom:18px;right:18px;display:flex;flex-direction:column;gap:10px">
+<div id="quick-actions" class="no-export">
   <button class="btn" id="themeBtn" title="Сменить тему">🌗 Тема</button>
   <button class="btn" id="topBtn" title="Вверх">⬆️ Наверх</button>
 </div>
 
-<footer>
+<footer class="no-export">
   <div class="wrap">
     © 2025, АО «Россети Кубань». Визит рабочей группы по направлению ВОЛС.
   </div>
 </footer>
 
 <script>
-  // ===== Служебные функции =====
+  // ===== helpers =====
   const $ = sel => document.querySelector(sel);
   const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-  // Печать
+  // Burger mobile nav
+  const mnav = $('#mnav');
+  $('#burger')?.addEventListener('click', ()=>{ mnav.classList.add('show'); mnav.setAttribute('aria-hidden','false'); });
+  $('#closeMnav')?.addEventListener('click', ()=>{ mnav.classList.remove('show'); mnav.setAttribute('aria-hidden','true'); });
+  $$('#mnav a').forEach(a=>a.addEventListener('click', ()=>{ mnav.classList.remove('show'); }));
+
+  // Print
   $('#printBtn')?.addEventListener('click', () => window.print());
 
-  // Тема
+  // Theme
   $('#themeBtn')?.addEventListener('click', () => {
     const cur = document.documentElement.getAttribute('data-theme');
     document.documentElement.setAttribute('data-theme', cur === 'light' ? 'dark' : 'light');
   });
 
-  // Наверх
+  // To top
   $('#topBtn')?.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 
-  // Аккордеоны дней
+  // Day accordions
   $$('.day .toggle').forEach(btn=>{
-    btn.addEventListener('click', e=>{
-      btn.closest('.day').classList.toggle('open');
-    });
+    btn.addEventListener('click', ()=> btn.closest('.day').classList.toggle('open'));
   });
 
-  // Быстрый поиск по программе
+  // Search filter
   $('#search')?.addEventListener('input', e=>{
     const q = e.target.value.trim().toLowerCase();
     $$('.evt').forEach(evt=>{
@@ -540,7 +600,7 @@
     });
   });
 
-  // Чек-лист материалов (localStorage)
+  // Checklist with localStorage
   const matBox = $('#matList');
   if(matBox){
     matBox.querySelectorAll('input[type=checkbox]').forEach(c=>{
@@ -555,7 +615,7 @@
     });
   }
 
-  // Таймер обратного отсчёта (до 10.09.2025 14:00)
+  // Countdown to 10.09.2025 14:00 (Europe/Amsterdam ok on client)
   const target = new Date('2025-09-10T14:00:00');
   const cdEls = $('#countdown')?.querySelectorAll('.cd .n') || [];
   function tick(){
@@ -572,9 +632,8 @@
   }
   if(cdEls.length) { tick(); setInterval(tick,1000); }
 
-  // ===== Генерация ICS =====
+  // ICS generation
   function toIcsDate(dateStr, timeStr){
-    // "2025-09-10", "14:30" -> "20250910T143000"
     const [Y,M,D] = dateStr.split('-');
     const [hh,mm] = timeStr.split(':');
     return `${Y}${M}${D}T${hh}${mm}00`;
@@ -592,10 +651,12 @@
     const dtStart = toIcsDate(date,start);
     const dtEnd   = toIcsDate(date,end);
     const uid = `${dtStart}-${Math.random().toString(36).slice(2)}@vols-plan`;
+    const now = new Date();
+    const ts = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}T${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}00`;
     return [
       'BEGIN:VEVENT',
       `UID:${uid}`,
-      `DTSTAMP:${toIcsDate(new Date().toISOString().slice(0,10), new Date().toTimeString().slice(0,5))}`,
+      `DTSTAMP:${ts}`,
       `DTSTART:${dtStart}`,
       `DTEND:${dtEnd}`,
       `SUMMARY:${title}`,
@@ -604,16 +665,8 @@
     ].join('\n');
   }
   function wrapIcs(events){
-    return [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//vols-plan//RU',
-      ...events,
-      'END:VCALENDAR'
-    ].join('\n');
+    return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//vols-plan//RU',...events,'END:VCALENDAR'].join('\n');
   }
-
-  // Кнопки "Добавить в календарь" на событиях
   $$('.evt .btn').forEach(btn=>{
     const data = btn.dataset.ics;
     if(!data) return;
@@ -623,8 +676,6 @@
       downloadICS(`event-${obj.date}.ics`, ics);
     });
   });
-
-  // Кнопка "Добавить всё в календарь"
   $('#addAllIcs')?.addEventListener('click', ()=>{
     const evts = [];
     $$('.evt .btn').forEach(btn=>{
@@ -636,19 +687,67 @@
     downloadICS('Визит_рабочей_группы_ВОЛС.ics', ics);
   });
 
-  // Авто-открытие актуального дня (если дата в диапазоне 10–12.09.2025)
+  // Auto-open near today
   (function(){
     const now = new Date();
     $$('.day').forEach(d=>{
       const ds = d.dataset.day;
       if(!ds) return;
       const day = new Date(ds+'T00:00:00');
-      if(Math.abs(+day - +now) < 36*3600*1000){ // около суток от текущей
+      if(Math.abs(+day - +now) < 36*3600*1000){
         $$('.day').forEach(x=>x.classList.remove('open'));
         d.classList.add('open');
       }
     });
   })();
+
+  // ===== PDF export (html2pdf.js with CDN fallbacks) =====
+  let html2pdfReady = false;
+  function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=()=>res(); s.onerror=()=>rej(); document.head.appendChild(s); }); }
+  async function ensureHtml2Pdf(){
+    if(html2pdfReady || window.html2pdf) return true;
+    const urls = [
+      "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js",
+      "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js",
+      "https://unpkg.com/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"
+    ];
+    for(const u of urls){
+      try{ await loadScript(u); html2pdfReady = true; return true; }catch(e){}
+    }
+    return false;
+  }
+
+  async function exportPdf(){
+    const ok = await ensureHtml2Pdf();
+    // Экспортируем только содержимое #exportArea, скрывая элементы с .no-export через CSS:
+    if(ok && window.html2pdf){
+      // На время экспорта добавим класс, скрывающий .no-export
+      document.body.classList.add('exporting');
+      const style = document.createElement('style');
+      style.id = 'export-style';
+      style.textContent = `.no-export{display:none!important}`;
+      document.head.appendChild(style);
+
+      const el = document.getElementById('exportArea');
+      const opt = {
+        margin:       [10,10,12,10],        // мм
+        filename:     'План_визита_ВОЛС.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: Math.min(2, window.devicePixelRatio || 1.5), useCORS: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['css','legacy'] } // уважать разрывы
+      };
+      await html2pdf().from(el).set(opt).save();
+
+      // Убираем временные стили
+      document.getElementById('export-style')?.remove();
+      document.body.classList.remove('exporting');
+    } else {
+      // Фолбэк — системный диалог печати (на iOS/Android можно «Сохранить как PDF»)
+      window.print();
+    }
+  }
+  $('#pdfBtn')?.addEventListener('click', exportPdf);
 </script>
 </body>
 </html>
